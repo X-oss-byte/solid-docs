@@ -4,7 +4,7 @@
 
 ## For contributing new content, head to the [new docs project](https://github.com/solidjs/solid-docs-next)!
 
-# Solid Docs
+# SolidDocs.vercel.app
 
 This is documentation for SolidJS v1.0.0 and associated Solid packages and projects. You can find more information about Solid and all its documentation at [https://solidjs.com/](https://solidjs.com/).
 
