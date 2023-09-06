@@ -1,0 +1,90 @@
+sdf-direnv
+
+direnv plugin for asdf version manager
+
+Build History
+
+Build history
+
+Motivation (or shims de-motivation)
+
+asdf version resolution is slow which makes every command execution pay that penalty. asdf reshim is needed for finding new executables, and some tools are not happy with their executables being masked by shims.
+
+Solution
+
+Perform asdf version resolution only once and defer environment loading to direnv.
+
+Prerequirements
+
+Make sure you have the required dependencies installed:
+curl
+git
+Usage
+
+Setup
+
+Install this plugin and run the setup command for all of your preferred shells bash/fish/zsh.
+
+asdf plugin-add direnv
+asdf direnv setup --shell bash --version latest
+If you already have a direnv installation, you can specify --version system.
+
+Otherwise this plugin can install it for you. Specify either --version latest or a direnv release as shown by asdf list-all direnv.
+
+The setup will hint which files were modified, you might want to review its changes. After setup, close and open your terminal.
+
+Configuration
+
+By default asdf-direnv will fail if a plugin is not installed, but is possible to change this using the environment variable ASDF_DIRENV_IGNORE_MISSING_PLUGINS=1
+
+Per-Project Environments
+
+Once direnv is hooked into your system, use the asdf direnv local command on your project root directory to update your environment.
+
+asdf direnv local [<tool> <version>]...
+Temporary environments for one-shot commands
+
+Some times you just want to execute a one-shot commmand under certain environment without creating/modifying .envrc and .tool-versions files on your project directory. In those cases, you might want to try using asdf direnv shell.
+
+# Enter a new shell having python and node
+$ asdf direnv shell python 3.8.10 nodejs 14.18.2
+
+# Just execute a npx command under some node version.
+$ asdf direnv shell nodejs 14.18.2 -- npx create-react-app
+Updating
+Cached environment
+Benchmark
+Pro-Tips
+Useful links
+
+Read direnv documentation for more on .envrc.
+
+If you are willing to contribute, be sure to read our CONTRIBUTING guide.
+
+License
+
+Licensed under the Apache License, Version 2.0.
+
+<<<<<<
+
+asdf plugins repository
+
+The purpose of the asdf plugins repository is to enable shorthand installation of plugins with:
+
+asdf plugin add The asdf core team recommend using the long-form which does not rely on this repository:
+
+asdf plugin add <git_url> Read each plugins code before installation and usage.
+
+Existing Plugins
+
+Plugins listed here should be stable and actively maintained. If you have issues with a specific plugin please raise them on the plugin repository first. If a deprecated plugin is listed here, please let us know and create a PR to add the most used alternative.
+
+Creating a new Plugin
+
+Read the creating plugins guide Consider using our Template which has the core functionality to tools published to GitHub releases and CI for GitHub/GitLab/CircleCI out of the box. asdf-community
+
+If you're creating a new plugin consider creating it as part of the asdf-community project. This is a separate community project with consolidated maintenance.
+
+Contributing a new Plugin
+
+Install repo dependencies: asdf install Add the plugin to the repository README.md Plugin List table. Create a file with the shortname you wish to be used by asdf in plugins/. The contents should be repository = <your_repo>. eg: printf "repository = https://github.com/asdf-vm/asdf-nodejs.git\n" > plugins/nodejs Test your code : scripts/test_plugin.bash --file plugins/ Format your code & this README: scripts/format.bash Create a PR following the instructions in the PR template. Security
